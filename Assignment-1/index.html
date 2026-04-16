@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form - Client Side Validation</title>
+  </head>
+
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    "
+  >
+    <div
+      style="
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 350px;
+      "
+    >
+      <h2 style="text-align: center; color: #333; margin-top: 0">Login Form</h2>
+      <p
+        style="
+          text-align: center;
+          color: #666;
+          font-size: 14px;
+          margin-bottom: 20px;
+        "
+      >
+        Assignment 1: Client-Side Validation
+      </p>
+
+      <form
+        id="loginForm"
+        style="display: flex; flex-direction: column"
+        novalidate
+      >
+        <label
+          for="email"
+          style="margin-bottom: 5px; font-weight: bold; color: #555"
+          >Email Address:</label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          style="
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+          "
+          placeholder="Enter your email: test@example.com"
+        />
+        <span
+          id="emailError"
+          style="
+            color: red;
+            font-size: 12px;
+            margin-bottom: 15px;
+            min-height: 15px;
+            display: block;
+          "
+        ></span>
+
+        <label
+          for="password"
+          style="margin-bottom: 5px; font-weight: bold; color: #555"
+          >Password:</label
+        >
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          minlength="8"
+          style="
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+          "
+          placeholder="Must be at least 8 characters"
+        />
+        <span
+          id="passwordError"
+          style="
+            color: red;
+            font-size: 12px;
+            margin-bottom: 15px;
+            min-height: 15px;
+            display: block;
+          "
+        ></span>
+
+        <button
+          type="submit"
+          style="
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+          "
+        >
+          Login
+        </button>
+      </form>
+
+      <div
+        id="successMessage"
+        style="
+          color: green;
+          font-weight: bold;
+          text-align: center;
+          margin-top: 15px;
+          display: none;
+        "
+      >
+        Login Successful!
+      </div>
+    </div>
+
+    <script>
+      const loginForm = document.getElementById("loginForm");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+      const successMessage = document.getElementById("successMessage");
+
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        successMessage.style.display = "none";
+
+        let isValid = true;
+
+        // Email Validation
+        if (!emailInput.value) {
+          emailError.textContent = "Email is required.";
+          isValid = false;
+        } else if (
+          !emailInput.value.includes("@") ||
+          !emailInput.value.includes(".")
+        ) {
+          emailError.textContent = "Please enter a valid email address.";
+          isValid = false;
+        }
+
+        // Password Validation
+        const password = passwordInput.value;
+        if (!password) {
+          passwordError.textContent = "Password is required.";
+          isValid = false;
+        } else if (password.length < 8) {
+          passwordError.textContent =
+            "Password must be at least 8 characters long.";
+          isValid = false;
+        } else if (!/\d/.test(password)) {
+          passwordError.textContent =
+            "Password must contain at least one number.";
+          isValid = false;
+        } else if (!/[A-Z]/.test(password)) {
+          passwordError.textContent =
+            "Password must contain at least one uppercase letter.";
+          isValid = false;
+        }
+
+        if (isValid) {
+          successMessage.style.display = "block";
+          loginForm.reset();
+        }
+      });
+    </script>
+  </body>
+</html>
