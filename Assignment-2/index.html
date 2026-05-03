@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Gallery</title>
+</head>
+
+<body style="
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: #333;
+">
+
+    <div style="max-width: 1100px; margin: auto; padding: 20px;">
+
+        <h1 style="
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+        ">
+            🐶 Dog Gallery
+        </h1>
+
+        <p style="
+            text-align: center;
+            color: #eee;
+            margin-bottom: 25px;
+        ">
+            Click the button to load cute dogs
+        </p>
+
+        <button id="loadDogs" style="
+            display: block;
+            margin: 0 auto 30px auto;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #5a4fcf;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        "
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"
+        >
+            Load Dogs
+        </button>
+
+        <div id="dog-container" style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        ">
+            <p style="text-align:center; color:white;">Click the button to begin</p>
+        </div>
+
+    </div>
+
+    <script>
+        const button = document.getElementById("loadDogs");
+        const container = document.getElementById("dog-container");
+
+        const API_URL = "https://dog.ceo/api/breeds/image/random/8";
+
+        button.addEventListener("click", () => {
+            container.innerHTML = '<p style="text-align:center; color:white;">Loading dogs...</p>';
+
+            fetch(API_URL)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Failed to fetch");
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    container.innerHTML = "";
+
+                    data.message.forEach(url => {
+                        const card = document.createElement("div");
+
+                        card.style.background = "white";
+                        card.style.borderRadius = "12px";
+                        card.style.overflow = "hidden";
+                        card.style.boxShadow = "0 5px 15px rgba(0,0,0,0.2)";
+                        card.style.transition = "0.3s";
+
+                        card.onmouseover = () => {
+                            card.style.transform = "translateY(-5px)";
+                        };
+                        card.onmouseout = () => {
+                            card.style.transform = "translateY(0)";
+                        };
+
+                        card.innerHTML = `
+                            <img src="${url}" style="
+                                width: 100%;
+                                height: 200px;
+                                object-fit: cover;
+                            ">
+                        `;
+
+                        container.appendChild(card);
+                    });
+                })
+                .catch(err => {
+                    container.innerHTML = `<p style="color:#ffdddd; text-align:center;">Error: ${err.message}</p>`;
+                });
+        });
+    </script>
+
+</body>
+</html>
