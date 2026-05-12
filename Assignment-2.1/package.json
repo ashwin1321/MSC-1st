@@ -1,0 +1,20 @@
+{
+  "name": "assignment-2.1",
+  "version": "1.0.0",
+  "description": "TypeScript interface modelling for the JSONPlaceholder /users API",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["typescript", "interface", "api"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^25.7.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
