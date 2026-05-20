@@ -1,0 +1,40 @@
+Coursework Brief:
+You are employed as a Senior Network Architect by a multinational cloud service
+provider operating a large-scale data center.
+The organization is facing performance degradation, congestion, and
+inconsistent QoS.
+
+Tasks:
+1. Network Architecture Analysis (4marks)
+2. Advanced Network Protocols (5 marks)
+3. Performance Metrics and Optimization (4 marks)
+4. Fault Tolerance and Redundancy (2 marks)
+5. Monitoring and Security (5 marks)
+
+Submission Requirements:
+- Length: 3,000–3,500 words
+- Format: PDF/Word
+- Diagrams required
+- Referencing: IEEE or Harvard style
+
+
+Students are required to analyze the scenario and answer the following in the submission:
+- High-Performance Network Architecture
+ - Describe an appropriate high-speed network architecture for the data center (e.g., Spine-Leaf architecture).
+ - Justify why this architecture is suitable for cloud-scale environments.
+ - Compare it with traditional three-tier architectures in terms of latency and scalability.
+-Advanced Protocols and Techniques
+ - Explain how TCP/IP performance enhancements (such as window scaling, congestion control algorithms, and TCP offloading) can improve performance.
+ - Analyze the role of MPLS within and across data centers for traffic engineering.
+ - Discuss how SDN can be used to dynamically manage traffic flows and improve network agility.
+- Performance Metrics and Optimization
+ - Identify the key performance metrics (latency, bandwidth, throughput) relevant to the scenario.
+ - Propose methods and tools for measuring these metrics.
+ - Suggest load balancing and traffic engineering techniques to mitigate congestion.
+- Fault Tolerance and Redundancy
+ - Design a redundancy strategy to ensure high availability.
+ - Explain how failover mechanisms and link aggregation improve network resilience.
+- Monitoring and Security
+ - Recommend suitable network monitoring tools for performance analysis.
+ - Identify security challenges specific to high-performance cloud networks and propose mitigation strategies.
+
