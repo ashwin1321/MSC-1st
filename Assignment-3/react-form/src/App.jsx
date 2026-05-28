@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
@@ -9,6 +9,15 @@ export default function App() {
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (status) {
+      const timer = setTimeout(() => {
+        setStatus(null)
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [status])
 
   const validate = () => {
     const e = {}
@@ -118,13 +127,13 @@ export default function App() {
             )}
           </button>
         </form>
-
-        {status && (
-          <div className={`alert-box ${status.type === 'success' ? 'alert-success' : 'alert-error'}`}>
-            {status.msg}
-          </div>
-        )}
       </div>
+
+      {status && (
+        <div className={`toast-notification ${status.type}`}>
+          {status.msg}
+        </div>
+      )}
     </div>
   )
 }
